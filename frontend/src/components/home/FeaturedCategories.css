@@ -1,0 +1,202 @@
+
+.featured-categories {
+  width: 100%;
+  padding: 100px 6%;
+  background-color: #ffffff;
+}
+
+.categories-container {
+  max-width: 1500px;
+  margin: 0 auto;
+}
+
+/* Heading */
+
+.categories-heading {
+  text-align: center;
+  margin-bottom: 55px;
+}
+
+.categories-eyebrow {
+  display: block;
+  margin-bottom: 18px;
+  color: #9a7955;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 3px;
+}
+
+.categories-heading h2 {
+  margin: 0;
+  color: #39352e;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(34px, 4vw, 48px);
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+.categories-heading h2 span {
+  color: #927653;
+  font-style: italic;
+}
+
+.categories-heading p {
+  margin: 15px 0 0;
+  color: #777064;
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+/* Categories Grid */
+
+.categories-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 35px 22px;
+}
+
+/* Category Card */
+
+.category-card {
+  display: block;
+  min-width: 0;
+  color: inherit;
+  text-decoration: none;
+}
+
+.category-image-wrapper {
+  width: 100%;
+  height: 300px;
+  position: relative;
+  overflow: hidden;
+  background-color: #e9e3d9;
+}
+
+.category-image {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.category-card:hover .category-image {
+  transform: scale(1.06);
+}
+
+.category-arrow {
+  position: absolute;
+  right: 15px;
+  bottom: 15px;
+  width: 38px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #faf8f4;
+  color: #514b40;
+  font-size: 20px;
+  transition: all 0.3s ease;
+}
+
+.category-card:hover .category-arrow {
+  background-color: #4b5142;
+  color: #ffffff;
+}
+
+/* Category Information */
+
+.category-info {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
+  padding-top: 17px;
+}
+
+.category-info h3 {
+  margin: 0;
+  color: #39352e;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 20px;
+  font-weight: 400;
+}
+
+.category-info p {
+  margin: 7px 0 0;
+  color: #888176;
+  font-size: 11px;
+}
+
+.category-number {
+  color: #a17c50;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 15px;
+}
+
+/* Tablet */
+
+@media (max-width: 1000px) {
+  .featured-categories {
+    padding: 75px 4%;
+  }
+
+  .categories-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 30px 18px;
+  }
+
+  .category-image-wrapper {
+    height: 260px;
+  }
+}
+
+/* Mobile */
+
+@media (max-width: 650px) {
+  .featured-categories {
+    padding: 60px 20px;
+  }
+
+  .categories-heading {
+    margin-bottom: 35px;
+  }
+
+  .categories-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 28px 14px;
+  }
+
+  .category-image-wrapper {
+    height: 220px;
+  }
+
+  .category-info h3 {
+    font-size: 17px;
+  }
+
+  .category-info p {
+    font-size: 10px;
+  }
+}
+
+/* Small Mobile */
+
+@media (max-width: 400px) {
+  .featured-categories {
+    padding: 50px 15px;
+  }
+
+  .category-image-wrapper {
+    height: 175px;
+  }
+
+  .category-info h3 {
+    font-size: 15px;
+  }
+
+  .category-arrow {
+    width: 32px;
+    height: 32px;
+  }
+}

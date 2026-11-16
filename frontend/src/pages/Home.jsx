@@ -1,13 +1,17 @@
 
 import AnnouncementBar from "../components/common/AnnouncementBar";
+import Navbar from "../components/common/Navbar";
+import FeaturedCategories from "../components/home/FeaturedCategories";
+import Hero from "../components/home/Hero";
 
 function Home() {
   return (
     <>
       <AnnouncementBar />
-
+      <Navbar />
       <main>
-        <h1>Welcome to Interior Furniture UK</h1>
+        <Hero />
+        <FeaturedCategories/>
       </main>
     </>
   );
