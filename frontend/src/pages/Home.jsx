@@ -1,5 +1,6 @@
 
 import AnnouncementBar from "../components/common/AnnouncementBar";
+import Footer from "../components/common/Footer";
 import Navbar from "../components/common/Navbar";
 import BestSellers from "../components/home/BestSellers";
 import FeaturedCategories from "../components/home/FeaturedCategories";
@@ -24,7 +25,9 @@ function Home() {
         <WhyChooseUs/>
         <Testimonials/>
         <Newsletter/>
+        
       </main>
+      <Footer/>
     </>
   );
 }
