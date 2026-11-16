@@ -1,0 +1,32 @@
+
+.announcement-bar {
+  width: 100%;
+  min-height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 15px;
+  background-color: #4b5142;
+  color: #ffffff;
+  text-align: center;
+}
+
+.announcement-bar p {
+  margin: 0;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 1.3px;
+  line-height: 1.5;
+}
+
+.announcement-bar span {
+  margin: 0 7px;
+  color: #d9c7a7;
+}
+
+@media (max-width: 480px) {
+  .announcement-bar p {
+    font-size: 9px;
+    letter-spacing: 0.6px;
+  }
+}
