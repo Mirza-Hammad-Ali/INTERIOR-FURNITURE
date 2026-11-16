@@ -1,0 +1,138 @@
+
+.newsletter-section {
+  width: 100%;
+  padding: 85px 6%;
+  background: #E9E3D9;
+}
+
+.newsletter-container {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.newsletter-content {
+  max-width: 700px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.newsletter-subtitle {
+  color: #A17C50;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.newsletter-content h2 {
+  color: #29251F;
+  font-family: Georgia, serif;
+  font-size: clamp(30px, 3vw, 42px);
+  font-weight: 400;
+  margin: 14px 0;
+}
+
+.newsletter-content p {
+  max-width: 550px;
+  margin: 0 auto 30px;
+  color: #777168;
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+.newsletter-form {
+  display: flex;
+  gap: 10px;
+  max-width: 580px;
+  margin: 0 auto;
+}
+
+.newsletter-input-wrap {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 17px;
+  background: #FAF8F4;
+  border: 1px solid #D8D0C3;
+}
+
+.newsletter-input-wrap svg {
+  flex-shrink: 0;
+  color: #92897D;
+  font-size: 17px;
+}
+
+.newsletter-input-wrap input {
+  width: 100%;
+  min-width: 0;
+  padding: 16px 0;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: #29251F;
+  font-size: 13px;
+}
+
+.newsletter-input-wrap input::placeholder {
+  color: #A49D93;
+}
+
+.newsletter-form button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 0 23px;
+  border: none;
+  background: #514B40;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.newsletter-form button:hover {
+  background: #A17C50;
+}
+
+.newsletter-form button svg {
+  font-size: 16px;
+}
+
+.newsletter-message {
+  display: block;
+  margin-top: 15px;
+  color: #514B40;
+  font-size: 13px;
+}
+
+.newsletter-content small {
+  display: block;
+  margin-top: 18px;
+  color: #92897D;
+  font-size: 11px;
+}
+
+@media (max-width: 600px) {
+  .newsletter-section {
+    padding: 60px 5%;
+  }
+
+  .newsletter-form {
+    flex-direction: column;
+  }
+
+  .newsletter-input-wrap {
+    min-height: 52px;
+  }
+
+  .newsletter-form button {
+    min-height: 50px;
+  }
+
+  .newsletter-content p {
+    font-size: 13px;
+  }
+}
