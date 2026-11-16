@@ -6,6 +6,7 @@ import FeaturedCategories from "../components/home/FeaturedCategories";
 import Hero from "../components/home/Hero";
 import NewArrivals from "../components/home/NewArrivals";
 import PromoBanner from "../components/home/PromoBanner";
+import WhyChooseUs from "../components/home/WhyChooseUs";
 
 function Home() {
   return (
@@ -18,6 +19,7 @@ function Home() {
         <BestSellers/>
         <PromoBanner/>
         <NewArrivals/>
+        <WhyChooseUs/>
       </main>
     </>
   );

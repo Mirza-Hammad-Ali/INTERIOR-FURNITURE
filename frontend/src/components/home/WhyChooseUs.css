@@ -1,0 +1,124 @@
+
+.why-choose-section {
+  width: 100%;
+  padding: 85px 6%;
+  background: #E9E3D9;
+}
+
+.why-choose-container {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.why-choose-heading {
+  max-width: 650px;
+  margin: 0 auto 48px;
+  text-align: center;
+}
+
+.why-choose-heading span {
+  color: #A17C50;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.why-choose-heading h2 {
+  color: #29251F;
+  font-family: Georgia, serif;
+  font-size: clamp(30px, 3vw, 42px);
+  font-weight: 400;
+  margin: 13px 0;
+}
+
+.why-choose-heading p {
+  color: #777168;
+  font-size: 14px;
+  line-height: 1.8;
+  margin: 0;
+}
+
+.why-choose-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 25px;
+}
+
+.why-choose-card {
+  padding: 35px 22px;
+  text-align: center;
+  background: #FAF8F4;
+  border: 1px solid rgba(81, 75, 64, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.why-choose-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 30px rgba(41, 37, 31, 0.07);
+}
+
+.why-choose-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #A17C50;
+  font-size: 29px;
+  margin-bottom: 20px;
+}
+
+.why-choose-card h3 {
+  color: #29251F;
+  font-family: Georgia, serif;
+  font-size: 18px;
+  font-weight: 400;
+  margin: 0 0 12px;
+}
+
+.why-choose-card p {
+  color: #777168;
+  font-size: 13px;
+  line-height: 1.8;
+  margin: 0;
+}
+
+@media (max-width: 1024px) {
+  .why-choose-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+  }
+
+  .why-choose-section {
+    padding: 70px 5%;
+  }
+}
+
+@media (max-width: 600px) {
+  .why-choose-section {
+    padding: 55px 5%;
+  }
+
+  .why-choose-heading {
+    margin-bottom: 30px;
+  }
+
+  .why-choose-grid {
+    gap: 12px;
+  }
+
+  .why-choose-card {
+    padding: 25px 12px;
+  }
+
+  .why-choose-icon {
+    font-size: 25px;
+    margin-bottom: 14px;
+  }
+
+  .why-choose-card h3 {
+    font-size: 15px;
+  }
+
+  .why-choose-card p {
+    font-size: 12px;
+  }
+}
