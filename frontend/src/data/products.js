@@ -96,6 +96,55 @@ const products = [
     description:
       "A classic bedroom bed featuring an elegant design and a comfortable sleeping experience.",
   },
+
+  {
+    id: 9,
+    name: "Modern Bouclé Accent Chair",
+    category: "Sofas",
+    price: 279,
+    oldPrice: 329,
+    image:
+      "https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?w=800&q=85",
+    badge: "NEW",
+    description:
+      "A luxurious bouclé accent chair featuring soft textured upholstery and a contemporary design, perfect for adding elegance to your living space.",
+  },
+  {
+    id: 10,
+    name: "Minimalist Oak Coffee Table",
+    category: "Dining Furniture",
+    price: 189,
+    oldPrice: 229,
+    image:
+      "https://images.unsplash.com/photo-1499933374294-4584851497cc?w=800&q=85",
+    badge: "NEW ARRIVAL",
+    description:
+      "A minimalist oak coffee table designed to bring natural warmth and modern elegance to your home.",
+  },
+  {
+    id: 11,
+    name: "Contemporary Dining Chair",
+    category: "Dining Furniture",
+    price: 149,
+    oldPrice: 189,
+    image:
+      "https://images.unsplash.com/photo-1503602642458-232111445657?w=800&q=85",
+    badge: "NEW",
+    description:
+      "A contemporary dining chair combining comfortable seating with timeless modern styling.",
+  },
+  {
+    id: 12,
+    name: "Elegant Upholstered Sofa",
+    category: "Sofas",
+    price: 799,
+    oldPrice: 949,
+    image:
+      "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=800&q=85",
+    badge: "JUST IN",
+    description:
+      "An elegant upholstered sofa designed to create a sophisticated and comfortable living room.",
+  },
 ];
 
 export default products;
