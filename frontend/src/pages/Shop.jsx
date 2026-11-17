@@ -3,73 +3,7 @@ import { useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { FiSliders, FiShoppingBag } from "react-icons/fi";
 import "./Shop.css";
-
-const products = [
-  {
-    id: 1,
-    name: "Luxury Upholstered Bed",
-    category: "Beds",
-    price: 449,
-    image: "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=700&q=85",
-    badge: "BESTSELLER",
-  },
-  {
-    id: 2,
-    name: "Modern Wooden Wardrobe",
-    category: "Wardrobes",
-    price: 529,
-    image: "https://images.unsplash.com/photo-1595428774223-ef52624120d2?w=700&q=85",
-    badge: "",
-  },
-  {
-    id: 3,
-    name: "Premium Comfort Mattress",
-    category: "Mattresses",
-    price: 299,
-    image: "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=700&q=85",
-    badge: "POPULAR",
-  },
-  {
-    id: 4,
-    name: "Elegant Bedside Table",
-    category: "Chest of Drawers",
-    price: 129,
-    image: "https://images.unsplash.com/photo-1499933374294-4584851497cc?w=700&q=85",
-    badge: "",
-  },
-  {
-    id: 5,
-    name: "Modern Dining Chair",
-    category: "Dining Furniture",
-    price: 149,
-    image: "https://images.unsplash.com/photo-1503602642458-232111445657?w=700&q=85",
-    badge: "NEW",
-  },
-  {
-    id: 6,
-    name: "Contemporary Sofa",
-    category: "Sofas",
-    price: 799,
-    image: "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=700&q=85",
-    badge: "",
-  },
-  {
-    id: 7,
-    name: "Wooden Bunk Bed",
-    category: "Bunk Beds",
-    price: 389,
-    image: "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=700&q=85",
-    badge: "NEW",
-  },
-  {
-    id: 8,
-    name: "Classic Bedroom Bed",
-    category: "Beds",
-    price: 599,
-    image: "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=700&q=85",
-    badge: "",
-  },
-];
+import products from "../data/products";
 
 const categories = [
   "All Products",
