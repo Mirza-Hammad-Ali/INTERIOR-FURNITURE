@@ -1,5 +1,6 @@
 
 import { useState } from "react";
+import { useSearchParams } from "react-router-dom";
 import { FiSliders, FiShoppingBag } from "react-icons/fi";
 import "./Shop.css";
 
@@ -82,7 +83,14 @@ const categories = [
 ];
 
 function Shop() {
-  const [activeCategory, setActiveCategory] = useState("All Products");
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const urlCategory = searchParams.get("category");
+
+  const activeCategory = categories.includes(urlCategory)
+    ? urlCategory
+    : "All Products";
+
   const [sortBy, setSortBy] = useState("default");
   const [maxPrice, setMaxPrice] = useState(1000);
 
@@ -99,6 +107,20 @@ function Shop() {
       if (sortBy === "newest") return b.id - a.id;
       return 0;
     });
+
+  function handleCategoryChange(category) {
+    if (category === "All Products") {
+      setSearchParams({});
+    } else {
+      setSearchParams({ category });
+    }
+  }
+
+  function resetFilters() {
+    setSearchParams({});
+    setMaxPrice(1000);
+    setSortBy("default");
+  }
 
   return (
     <div className="shop-page">
@@ -124,7 +146,7 @@ function Shop() {
                 className={`shop-category-btn ${
                   activeCategory === category ? "active" : ""
                 }`}
-                onClick={() => setActiveCategory(category)}
+                onClick={() => handleCategoryChange(category)}
               >
                 {category}
               </button>
@@ -147,14 +169,7 @@ function Shop() {
             </div>
           </div>
 
-          <button
-            className="shop-reset-btn"
-            onClick={() => {
-              setActiveCategory("All Products");
-              setMaxPrice(1000);
-              setSortBy("default");
-            }}
-          >
+          <button className="shop-reset-btn" onClick={resetFilters}>
             Clear All Filters
           </button>
         </aside>

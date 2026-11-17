@@ -1,4 +1,4 @@
-
+import { Link } from "react-router-dom";
 import "./BestSellers.css";
 
 const products = [
@@ -52,9 +52,7 @@ function BestSellers() {
           <div>
             <span className="best-sellers-subtitle">CUSTOMER FAVOURITES</span>
             <h2>Our Best Sellers</h2>
-            <p>
-              Discover the furniture pieces our customers love the most.
-            </p>
+            <p>Discover the furniture pieces our customers love the most.</p>
           </div>
 
           <a href="/shop" className="best-sellers-view-all">
@@ -66,7 +64,9 @@ function BestSellers() {
           {products.map((product) => (
             <article className="best-seller-card" key={product.id}>
               <div className="best-seller-image-wrap">
-                <img src={product.image} alt={product.name} />
+                <Link to={`/product/${product.id}`}>
+                  <img src={product.image} alt={product.name} />
+                </Link>
 
                 <span className="best-seller-badge">{product.badge}</span>
 
@@ -79,11 +79,16 @@ function BestSellers() {
               </div>
 
               <div className="best-seller-info">
-                <span className="best-seller-category">
-                  {product.category}
-                </span>
+                <span className="best-seller-category">{product.category}</span>
 
-                <h3>{product.name}</h3>
+                <h3>
+                  <Link
+                    to={`/product/${product.id}`}
+                    className="best-seller-product-link"
+                  >
+                    {product.name}
+                  </Link>
+                </h3>
 
                 <div className="best-seller-price">
                   <span>£{product.price.toFixed(2)}</span>

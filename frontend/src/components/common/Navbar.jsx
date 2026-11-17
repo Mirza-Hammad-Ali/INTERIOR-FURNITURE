@@ -1,5 +1,7 @@
 
 import { useState } from "react";
+import { Link } from "react-router-dom";
+
 import {
   FiSearch,
   FiUser,
@@ -14,12 +16,12 @@ function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   const navLinks = [
-    { name: "Home", href: "#home" },
-    { name: "Shop", href: "#shop" },
-    { name: "Beds", href: "#beds" },
-    { name: "Wardrobes", href: "#wardrobes" },
-    { name: "Dining", href: "#dining" },
-    { name: "Mattresses", href: "#mattresses" },
+    { name: "Home", href: "/" },
+    { name: "Shop", href: "/shop" },
+    { name: "Beds", href: "/shop?category=Beds" },
+    { name: "Wardrobes", href: "/shop?category=Wardrobes" },
+    { name: "Dining", href: "/shop?category=Dining Furniture" },
+    { name: "Mattresses", href: "/shop?category=Mattresses" },
   ];
 
   function closeMenu() {
@@ -41,37 +43,37 @@ function Navbar() {
         </button>
 
         {/* Logo */}
-        <a href="#home" className="navbar-logo" onClick={closeMenu}>
+        <Link to="/" className="navbar-logo" onClick={closeMenu}>
           <span className="logo-main">INTERIOR</span>
           <span className="logo-sub">FURNITURE UK</span>
-        </a>
+        </Link>
 
         {/* Navigation Links */}
         <nav className={`navbar-links ${menuOpen ? "active" : ""}`}>
           {navLinks.map((link) => (
-            <a
+            <Link
               key={link.name}
-              href={link.href}
+              to={link.href}
               onClick={closeMenu}
             >
               {link.name}
-            </a>
+            </Link>
           ))}
         </nav>
 
         {/* Navbar Actions */}
         <div className="navbar-actions">
-          <a href="#search" aria-label="Search" className="navbar-icon">
+          <button aria-label="Search" className="navbar-icon">
             <FiSearch />
-          </a>
+          </button>
 
-          <a href="#account" aria-label="Account" className="navbar-icon">
+          <button aria-label="Account" className="navbar-icon">
             <FiUser />
-          </a>
+          </button>
 
-          <a href="#cart" aria-label="Shopping Bag" className="navbar-icon bag-icon">
+          <button aria-label="Shopping Bag" className="navbar-icon bag-icon">
             <FiShoppingBag />
-          </a>
+          </button>
         </div>
 
       </div>

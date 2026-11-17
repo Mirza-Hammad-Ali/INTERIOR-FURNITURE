@@ -214,3 +214,13 @@
     gap: 6px;
   }
 }
+
+.best-seller-product-link {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.best-seller-product-link:hover {
+  color: #a17c50;
+}
