@@ -1,6 +1,5 @@
-
 import { useState } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams, Link } from "react-router-dom";
 import { FiSliders, FiShoppingBag } from "react-icons/fi";
 import "./Shop.css";
 import products from "../data/products";
@@ -32,7 +31,7 @@ function Shop() {
     .filter((product) =>
       activeCategory === "All Products"
         ? true
-        : product.category === activeCategory
+        : product.category === activeCategory,
     )
     .filter((product) => product.price <= maxPrice)
     .sort((a, b) => {
@@ -131,7 +130,9 @@ function Shop() {
               {filteredProducts.map((product) => (
                 <article className="shop-product-card" key={product.id}>
                   <div className="shop-product-image">
-                    <img src={product.image} alt={product.name} />
+                    <Link to={`/product/${product.id}`}>
+                      <img src={product.image} alt={product.name} />
+                    </Link>
 
                     {product.badge && (
                       <span className="shop-product-badge">
