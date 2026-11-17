@@ -150,7 +150,9 @@ function Shop() {
 
                   <div className="shop-product-info">
                     <span>{product.category}</span>
-                    <h3>{product.name}</h3>
+                    <h3>
+                      <Link to={`/product/${product.id}`}>{product.name}</Link>
+                    </h3>
                     <strong>£{product.price.toFixed(2)}</strong>
                   </div>
                 </article>
