@@ -3,7 +3,7 @@ const products = [
   {
     id: 1,
     name: "Luxury Upholstered Bed",
-    category: "Bedroom Furniture",
+    category: "Beds",
     price: 449,
     oldPrice: 599,
     image:
@@ -15,7 +15,7 @@ const products = [
   {
     id: 2,
     name: "Modern Wooden Wardrobe",
-    category: "Storage Furniture",
+    category: "Wardrobes",
     price: 529,
     oldPrice: 649,
     image:
@@ -39,7 +39,7 @@ const products = [
   {
     id: 4,
     name: "Elegant Bedside Table",
-    category: "Bedroom Furniture",
+    category: "Chest of Drawers",
     price: 129,
     oldPrice: 169,
     image:
@@ -47,6 +47,54 @@ const products = [
     badge: "BESTSELLER",
     description:
       "A refined bedside table that combines elegant design with useful everyday storage.",
+  },
+  {
+    id: 5,
+    name: "Modern Dining Chair",
+    category: "Dining Furniture",
+    price: 149,
+    oldPrice: 199,
+    image:
+      "https://images.unsplash.com/photo-1503602642458-232111445657?w=800&q=85",
+    badge: "NEW",
+    description:
+      "A beautifully crafted dining chair that adds contemporary elegance and comfort to your dining space.",
+  },
+  {
+    id: 6,
+    name: "Contemporary Sofa",
+    category: "Sofas",
+    price: 799,
+    oldPrice: 999,
+    image:
+      "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=800&q=85",
+    badge: "",
+    description:
+      "A contemporary sofa designed to bring comfort, sophistication and timeless style to your living room.",
+  },
+  {
+    id: 7,
+    name: "Wooden Bunk Bed",
+    category: "Bunk Beds",
+    price: 389,
+    oldPrice: 479,
+    image:
+      "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=800&q=85",
+    badge: "NEW",
+    description:
+      "A practical wooden bunk bed designed to maximise bedroom space while providing comfort and style.",
+  },
+  {
+    id: 8,
+    name: "Classic Bedroom Bed",
+    category: "Beds",
+    price: 599,
+    oldPrice: 749,
+    image:
+      "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=800&q=85",
+    badge: "",
+    description:
+      "A classic bedroom bed featuring an elegant design and a comfortable sleeping experience.",
   },
 ];
 
