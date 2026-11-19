@@ -19,6 +19,7 @@ import {
 import AdminCustomers from "./AdminCustomers";
 import AdminProducts from "./AdminProducts";
 import AdminOrders from "./AdminOrders";
+import AdminSettings from "./AdminSettings";
 
 const stats = [
   {
@@ -249,8 +250,9 @@ function AdminDashboard() {
             <AdminOrders />
           ) : activeMenu === "Customers" ? (
             <AdminCustomers />
+          ) : activeMenu === "Settings" ? (
+            <AdminSettings />
           ) : activeMenu === "Dashboard" ? (
-            // Yahan tumhara existing Dashboard code rahega
             <>
               {/* Page Heading */}
               <div className="mb-8 flex flex-col justify-between gap-4 sm:flex-row sm:items-center">
