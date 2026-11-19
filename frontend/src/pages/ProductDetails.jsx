@@ -1,8 +1,14 @@
 
 import { useState } from "react";
 import { useParams, Link } from "react-router-dom";
-import { FiShoppingBag, FiMinus, FiPlus, FiArrowLeft } from "react-icons/fi";
+import {
+  FiShoppingBag,
+  FiMinus,
+  FiPlus,
+  FiArrowLeft,
+} from "react-icons/fi";
 
+import { useCart } from "../context/CartContext";
 import products from "../data/products";
 import "./ProductDetails.css";
 
@@ -12,6 +18,7 @@ function ProductDetails() {
   const product = products.find((item) => item.id === Number(id));
 
   const [quantity, setQuantity] = useState(1);
+  const { addToCart } = useCart();
 
   if (!product) {
     return (
@@ -20,6 +27,11 @@ function ProductDetails() {
         <Link to="/shop">Back to Shop</Link>
       </div>
     );
+  }
+
+  function handleAddToCart() {
+    addToCart(product, quantity);
+    alert(`${quantity} x ${product.name} added to cart!`);
   }
 
   return (
@@ -32,6 +44,7 @@ function ProductDetails() {
         <div className="product-details-grid">
           <div className="product-details-image">
             <img src={product.image} alt={product.name} />
+
             {product.badge && (
               <span className="product-details-badge">
                 {product.badge}
@@ -79,9 +92,7 @@ function ProductDetails() {
 
             <button
               className="product-add-cart-btn"
-              onClick={() =>
-                alert(`${quantity} x ${product.name} added to cart!`)
-              }
+              onClick={handleAddToCart}
             >
               <FiShoppingBag /> Add to Cart
             </button>

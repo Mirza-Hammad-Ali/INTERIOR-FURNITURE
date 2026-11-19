@@ -1,5 +1,7 @@
 
 import { Link } from "react-router-dom";
+
+import { useCart } from "../../context/CartContext";
 import products from "../../data/products";
 import "./NewArrivals.css";
 
@@ -8,6 +10,8 @@ const newProducts = products.filter((product) =>
 );
 
 function NewArrivals() {
+  const { addToCart } = useCart();
+
   return (
     <section className="new-arrivals-section">
       <div className="new-arrivals-container">
@@ -16,7 +20,9 @@ function NewArrivals() {
             <span className="new-arrivals-subtitle">
               FRESH FROM OUR COLLECTION
             </span>
+
             <h2>New Arrivals</h2>
+
             <p>
               Explore our latest pieces, thoughtfully selected for your home.
             </p>
@@ -35,11 +41,13 @@ function NewArrivals() {
                   <img src={product.image} alt={product.name} />
                 </Link>
 
-                <span className="new-arrival-badge">{product.badge}</span>
+                <span className="new-arrival-badge">
+                  {product.badge}
+                </span>
 
                 <button
                   className="new-arrival-cart-btn"
-                  onClick={() => alert(`${product.name} added to cart!`)}
+                  onClick={() => addToCart(product)}
                 >
                   Add to Cart
                 </button>
