@@ -18,6 +18,7 @@ import {
 } from "react-icons/fi";
 
 import AdminProducts from "./AdminProducts";
+import AdminOrders from "./AdminOrders";
 
 const stats = [
   {
@@ -244,6 +245,8 @@ function AdminDashboard() {
         <main className="p-5 sm:p-8">
           {activeMenu === "Products" ? (
             <AdminProducts />
+          ) : activeMenu === "Orders" ? (
+            <AdminOrders />
           ) : activeMenu === "Dashboard" ? (
             <>
               {/* Page Heading */}
@@ -507,7 +510,6 @@ function AdminDashboard() {
           ) : (
             <div className="flex min-h-[450px] flex-col items-center justify-center border border-[#e9e3d9] bg-white px-6 text-center">
               <div className="flex h-16 w-16 items-center justify-center rounded-full bg-[#f4f1eb] text-[#a17c50]">
-                {activeMenu === "Orders" && <FiShoppingBag size={28} />}
                 {activeMenu === "Customers" && <FiUsers size={28} />}
                 {activeMenu === "Settings" && <FiSettings size={28} />}
               </div>
