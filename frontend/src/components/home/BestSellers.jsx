@@ -1,4 +1,6 @@
+
 import { Link } from "react-router-dom";
+import { useCart } from "../../context/CartContext";
 import "./BestSellers.css";
 
 const products = [
@@ -45,19 +47,25 @@ const products = [
 ];
 
 function BestSellers() {
+  const { addToCart } = useCart();
+
   return (
     <section className="best-sellers-section">
       <div className="best-sellers-container">
         <div className="best-sellers-heading">
           <div>
-            <span className="best-sellers-subtitle">CUSTOMER FAVOURITES</span>
+            <span className="best-sellers-subtitle">
+              CUSTOMER FAVOURITES
+            </span>
             <h2>Our Best Sellers</h2>
-            <p>Discover the furniture pieces our customers love the most.</p>
+            <p>
+              Discover the furniture pieces our customers love the most.
+            </p>
           </div>
 
-          <a href="/shop" className="best-sellers-view-all">
+          <Link to="/shop" className="best-sellers-view-all">
             View All Products <span>→</span>
-          </a>
+          </Link>
         </div>
 
         <div className="best-sellers-grid">
@@ -68,18 +76,25 @@ function BestSellers() {
                   <img src={product.image} alt={product.name} />
                 </Link>
 
-                <span className="best-seller-badge">{product.badge}</span>
+                <span className="best-seller-badge">
+                  {product.badge}
+                </span>
 
                 <button
                   className="best-seller-cart-btn"
-                  onClick={() => alert(`${product.name} added to cart!`)}
+                  onClick={() => {
+                    addToCart(product);
+                    alert(`${product.name} added to cart!`);
+                  }}
                 >
                   Add to Cart
                 </button>
               </div>
 
               <div className="best-seller-info">
-                <span className="best-seller-category">{product.category}</span>
+                <span className="best-seller-category">
+                  {product.category}
+                </span>
 
                 <h3>
                   <Link

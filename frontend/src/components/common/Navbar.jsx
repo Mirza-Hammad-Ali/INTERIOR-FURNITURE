@@ -1,6 +1,6 @@
 
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import {
   FiSearch,
@@ -16,8 +16,11 @@ import "./Navbar.css";
 
 function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
 
   const { cartCount } = useCart();
+  const navigate = useNavigate();
 
   const navLinks = [
     { name: "Home", href: "/" },
@@ -32,10 +35,23 @@ function Navbar() {
     setMenuOpen(false);
   }
 
+  function handleSearch(e) {
+    e.preventDefault();
+
+    const search = searchTerm.trim();
+
+    if (!search) return;
+
+    navigate(`/shop?search=${encodeURIComponent(search)}`);
+
+    setSearchOpen(false);
+    setSearchTerm("");
+    closeMenu();
+  }
+
   return (
     <header className="navbar">
       <div className="navbar-container">
-
         {/* Mobile Menu Button */}
         <button
           className="mobile-menu-button"
@@ -55,11 +71,7 @@ function Navbar() {
         {/* Navigation Links */}
         <nav className={`navbar-links ${menuOpen ? "active" : ""}`}>
           {navLinks.map((link) => (
-            <Link
-              key={link.name}
-              to={link.href}
-              onClick={closeMenu}
-            >
+            <Link key={link.name} to={link.href} onClick={closeMenu}>
               {link.name}
             </Link>
           ))}
@@ -67,8 +79,14 @@ function Navbar() {
 
         {/* Navbar Actions */}
         <div className="navbar-actions">
-          <button aria-label="Search" className="navbar-icon">
-            <FiSearch />
+          <button
+            aria-label="Search"
+            className={`navbar-icon search-toggle ${
+              searchOpen ? "active" : ""
+            }`}
+            onClick={() => setSearchOpen(!searchOpen)}
+          >
+            {searchOpen ? <FiX /> : <FiSearch />}
           </button>
 
           <button aria-label="Account" className="navbar-icon">
@@ -89,8 +107,26 @@ function Navbar() {
             )}
           </Link>
         </div>
-
       </div>
+
+      {/* Search Box */}
+      {searchOpen && (
+        <div className="navbar-search-panel">
+          <form onSubmit={handleSearch} className="navbar-search-form">
+            <FiSearch />
+
+            <input
+              type="text"
+              placeholder="Search beds, wardrobes, sofas..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              autoFocus
+            />
+
+            <button type="submit">Search</button>
+          </form>
+        </div>
+      )}
     </header>
   );
 }
