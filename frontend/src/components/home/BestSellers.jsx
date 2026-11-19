@@ -1,6 +1,10 @@
 
 import { Link } from "react-router-dom";
+import { FiHeart } from "react-icons/fi";
+
 import { useCart } from "../../context/CartContext";
+import { useWishlist } from "../../context/WishlistContext";
+
 import "./BestSellers.css";
 
 const products = [
@@ -49,6 +53,20 @@ const products = [
 function BestSellers() {
   const { addToCart } = useCart();
 
+  const {
+    addToWishlist,
+    removeFromWishlist,
+    isInWishlist,
+  } = useWishlist();
+
+  function handleWishlist(product) {
+    if (isInWishlist(product.id)) {
+      removeFromWishlist(product.id);
+    } else {
+      addToWishlist(product);
+    }
+  }
+
   return (
     <section className="best-sellers-section">
       <div className="best-sellers-container">
@@ -57,7 +75,9 @@ function BestSellers() {
             <span className="best-sellers-subtitle">
               CUSTOMER FAVOURITES
             </span>
+
             <h2>Our Best Sellers</h2>
+
             <p>
               Discover the furniture pieces our customers love the most.
             </p>
@@ -69,49 +89,78 @@ function BestSellers() {
         </div>
 
         <div className="best-sellers-grid">
-          {products.map((product) => (
-            <article className="best-seller-card" key={product.id}>
-              <div className="best-seller-image-wrap">
-                <Link to={`/product/${product.id}`}>
-                  <img src={product.image} alt={product.name} />
-                </Link>
+          {products.map((product) => {
+            const saved = isInWishlist(product.id);
 
-                <span className="best-seller-badge">
-                  {product.badge}
-                </span>
-
-                <button
-                  className="best-seller-cart-btn"
-                  onClick={() => {
-                    addToCart(product);
-                    alert(`${product.name} added to cart!`);
-                  }}
-                >
-                  Add to Cart
-                </button>
-              </div>
-
-              <div className="best-seller-info">
-                <span className="best-seller-category">
-                  {product.category}
-                </span>
-
-                <h3>
-                  <Link
-                    to={`/product/${product.id}`}
-                    className="best-seller-product-link"
-                  >
-                    {product.name}
+            return (
+              <article className="best-seller-card" key={product.id}>
+                <div className="best-seller-image-wrap relative">
+                  <Link to={`/product/${product.id}`}>
+                    <img src={product.image} alt={product.name} />
                   </Link>
-                </h3>
 
-                <div className="best-seller-price">
-                  <span>£{product.price.toFixed(2)}</span>
-                  <del>£{product.oldPrice.toFixed(2)}</del>
+                  <span className="best-seller-badge">
+                    {product.badge}
+                  </span>
+
+                  {/* Wishlist Button */}
+                  <button
+                    type="button"
+                    onClick={() => handleWishlist(product)}
+                    aria-label={
+                      saved
+                        ? `Remove ${product.name} from wishlist`
+                        : `Add ${product.name} to wishlist`
+                    }
+                    title={
+                      saved ? "Remove from Wishlist" : "Add to Wishlist"
+                    }
+                    className={`absolute top-3 right-3 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-white shadow-md transition-all duration-300 hover:bg-[#514b40] hover:text-white ${
+                      saved
+                        ? "text-red-600"
+                        : "text-[#514b40]"
+                    }`}
+                  >
+                    <FiHeart
+                      size={19}
+                      className={saved ? "fill-current" : ""}
+                    />
+                  </button>
+
+                  {/* Add to Cart */}
+                  <button
+                    className="best-seller-cart-btn"
+                    onClick={() => {
+                      addToCart(product);
+                      alert(`${product.name} added to cart!`);
+                    }}
+                  >
+                    Add to Cart
+                  </button>
                 </div>
-              </div>
-            </article>
-          ))}
+
+                <div className="best-seller-info">
+                  <span className="best-seller-category">
+                    {product.category}
+                  </span>
+
+                  <h3>
+                    <Link
+                      to={`/product/${product.id}`}
+                      className="best-seller-product-link"
+                    >
+                      {product.name}
+                    </Link>
+                  </h3>
+
+                  <div className="best-seller-price">
+                    <span>£{product.price.toFixed(2)}</span>
+                    <del>£{product.oldPrice.toFixed(2)}</del>
+                  </div>
+                </div>
+              </article>
+            );
+          })}
         </div>
       </div>
     </section>

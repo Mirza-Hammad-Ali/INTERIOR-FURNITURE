@@ -1,4 +1,6 @@
 
+import { Link } from "react-router-dom";
+
 import {
   FiMapPin,
   FiPhone,
@@ -6,7 +8,6 @@ import {
   FiFacebook,
   FiInstagram,
   FiTwitter,
-  FiArrowRight,
 } from "react-icons/fi";
 
 import "./Footer.css";
@@ -17,9 +18,9 @@ function Footer() {
       <div className="footer-container">
         <div className="footer-main">
           <div className="footer-brand">
-            <a href="/" className="footer-logo">
+            <Link to="/" className="footer-logo">
               INTERIOR <span>FURNITURE UK</span>
-            </a>
+            </Link>
 
             <p>
               Bringing comfort, elegance and timeless furniture designs
@@ -35,28 +36,28 @@ function Footer() {
 
           <div className="footer-column">
             <h3>Quick Links</h3>
-            <a href="/">Home</a>
-            <a href="/shop">Shop</a>
-            <a href="/about">About Us</a>
-            <a href="/contact">Contact Us</a>
+            <Link to="/">Home</Link>
+            <Link to="/shop">Shop</Link>
+            <Link to="/about">About Us</Link>
+            <Link to="/contact">Contact Us</Link>
           </div>
 
           <div className="footer-column">
             <h3>Categories</h3>
-            <a href="/shop/beds">Beds</a>
-            <a href="/shop/wardrobes">Wardrobes</a>
-            <a href="/shop/mattresses">Mattresses</a>
-            <a href="/shop/sofas">Sofas</a>
-            <a href="/shop/bunk-beds">Bunk Beds</a>
+            <Link to="/shop?category=Beds">Beds</Link>
+            <Link to="/shop?category=Wardrobes">Wardrobes</Link>
+            <Link to="/shop?category=Mattresses">Mattresses</Link>
+            <Link to="/shop?category=Sofas">Sofas</Link>
+            <Link to="/shop?category=Bunk Beds">Bunk Beds</Link>
           </div>
 
           <div className="footer-column">
             <h3>Customer Support</h3>
-            <a href="/delivery">Delivery Information</a>
-            <a href="/returns">Returns & Refunds</a>
-            <a href="/faq">Frequently Asked Questions</a>
-            <a href="/privacy-policy">Privacy Policy</a>
-            <a href="/terms">Terms & Conditions</a>
+            <Link to="/delivery">Delivery Information</Link>
+            <Link to="/returns">Returns & Refunds</Link>
+            <Link to="/faq">Frequently Asked Questions</Link>
+            <Link to="/privacy-policy">Privacy Policy</Link>
+            <Link to="/terms">Terms & Conditions</Link>
           </div>
 
           <div className="footer-contact">
@@ -85,8 +86,8 @@ function Footer() {
           </p>
 
           <div className="footer-bottom-links">
-            <a href="/privacy-policy">Privacy</a>
-            <a href="/terms">Terms</a>
+            <Link to="/privacy-policy">Privacy</Link>
+            <Link to="/terms">Terms</Link>
           </div>
 
           <span className="footer-payment-text">

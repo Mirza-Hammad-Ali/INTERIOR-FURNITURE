@@ -1,10 +1,18 @@
 
 import { useState } from "react";
 import { useSearchParams, Link } from "react-router-dom";
-import { FiSliders, FiShoppingBag } from "react-icons/fi";
+
+import {
+  FiSliders,
+  FiShoppingBag,
+  FiHeart,
+} from "react-icons/fi";
 
 import { useCart } from "../context/CartContext";
+import { useWishlist } from "../context/WishlistContext";
+
 import products from "../data/products";
+
 import "./Shop.css";
 
 const categories = [
@@ -20,9 +28,17 @@ const categories = [
 
 function Shop() {
   const [searchParams, setSearchParams] = useSearchParams();
+
   const { addToCart } = useCart();
 
+  const {
+    addToWishlist,
+    removeFromWishlist,
+    isInWishlist,
+  } = useWishlist();
+
   const urlCategory = searchParams.get("category");
+  const searchTerm = searchParams.get("search") || "";
 
   const activeCategory = categories.includes(urlCategory)
     ? urlCategory
@@ -38,6 +54,17 @@ function Shop() {
         : product.category === activeCategory
     )
     .filter((product) => product.price <= maxPrice)
+    .filter((product) => {
+      if (!searchTerm.trim()) return true;
+
+      const search = searchTerm.toLowerCase().trim();
+
+      return (
+        product.name.toLowerCase().includes(search) ||
+        product.category.toLowerCase().includes(search) ||
+        product.description?.toLowerCase().includes(search)
+      );
+    })
     .sort((a, b) => {
       if (sortBy === "low-high") return a.price - b.price;
       if (sortBy === "high-low") return b.price - a.price;
@@ -46,11 +73,17 @@ function Shop() {
     });
 
   function handleCategoryChange(category) {
-    if (category === "All Products") {
-      setSearchParams({});
-    } else {
-      setSearchParams({ category });
+    const newParams = {};
+
+    if (category !== "All Products") {
+      newParams.category = category;
     }
+
+    if (searchTerm) {
+      newParams.search = searchTerm;
+    }
+
+    setSearchParams(newParams);
   }
 
   function resetFilters() {
@@ -59,12 +92,22 @@ function Shop() {
     setSortBy("default");
   }
 
+  function handleWishlist(product) {
+    if (isInWishlist(product.id)) {
+      removeFromWishlist(product.id);
+    } else {
+      addToWishlist(product);
+    }
+  }
+
   return (
     <div className="shop-page">
       <section className="shop-page-banner">
         <span>EXPLORE OUR COLLECTION</span>
         <h1>Shop Furniture</h1>
-        <p>Thoughtfully selected furniture for beautiful everyday living.</p>
+        <p>
+          Thoughtfully selected furniture for beautiful everyday living.
+        </p>
       </section>
 
       <div className="shop-container">
@@ -115,9 +158,17 @@ function Shop() {
 
         <section className="shop-products-area">
           <div className="shop-toolbar">
-            <p>
-              Showing <strong>{filteredProducts.length}</strong> products
-            </p>
+            <div>
+              <p>
+                Showing <strong>{filteredProducts.length}</strong> products
+              </p>
+
+              {searchTerm && (
+                <p className="shop-search-result">
+                  Search results for: <strong>"{searchTerm}"</strong>
+                </p>
+              )}
+            </div>
 
             <select
               value={sortBy}
@@ -133,45 +184,79 @@ function Shop() {
 
           {filteredProducts.length > 0 ? (
             <div className="shop-products-grid">
-              {filteredProducts.map((product) => (
-                <article className="shop-product-card" key={product.id}>
-                  <div className="shop-product-image">
-                    <Link to={`/product/${product.id}`}>
-                      <img src={product.image} alt={product.name} />
-                    </Link>
+              {filteredProducts.map((product) => {
+                const saved = isInWishlist(product.id);
 
-                    {product.badge && (
-                      <span className="shop-product-badge">
-                        {product.badge}
-                      </span>
-                    )}
-
-                    <button
-                      className="shop-add-cart"
-                      onClick={() => addToCart(product)}
-                    >
-                      <FiShoppingBag /> Add to Cart
-                    </button>
-                  </div>
-
-                  <div className="shop-product-info">
-                    <span>{product.category}</span>
-
-                    <h3>
+                return (
+                  <article className="shop-product-card" key={product.id}>
+                    <div className="shop-product-image relative">
                       <Link to={`/product/${product.id}`}>
-                        {product.name}
+                        <img src={product.image} alt={product.name} />
                       </Link>
-                    </h3>
 
-                    <strong>£{product.price.toFixed(2)}</strong>
-                  </div>
-                </article>
-              ))}
+                      {product.badge && (
+                        <span className="shop-product-badge">
+                          {product.badge}
+                        </span>
+                      )}
+
+                      <button
+                        type="button"
+                        onClick={() => handleWishlist(product)}
+                        aria-label={
+                          saved
+                            ? `Remove ${product.name} from wishlist`
+                            : `Add ${product.name} to wishlist`
+                        }
+                        title={
+                          saved
+                            ? "Remove from Wishlist"
+                            : "Add to Wishlist"
+                        }
+                        className={`absolute top-3 right-3 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-white shadow-md transition-all duration-300 hover:bg-[#514b40] hover:text-white ${
+                          saved ? "text-red-600" : "text-[#514b40]"
+                        }`}
+                      >
+                        <FiHeart
+                          size={19}
+                          className={saved ? "fill-current" : ""}
+                        />
+                      </button>
+
+                      <button
+                        className="shop-add-cart"
+                        onClick={() => addToCart(product)}
+                      >
+                        <FiShoppingBag /> Add to Cart
+                      </button>
+                    </div>
+
+                    <div className="shop-product-info">
+                      <span>{product.category}</span>
+
+                      <h3>
+                        <Link to={`/product/${product.id}`}>
+                          {product.name}
+                        </Link>
+                      </h3>
+
+                      <strong>£{product.price.toFixed(2)}</strong>
+                    </div>
+                  </article>
+                );
+              })}
             </div>
           ) : (
             <div className="shop-no-products">
               <h3>No products found</h3>
-              <p>Try changing your category or price filters.</p>
+              <p>
+                Try another search keyword or change your category and price
+                filters.
+              </p>
+
+              <button className="shop-reset-btn" onClick={resetFilters}>
+                Clear All Filters
+              </button>
             </div>
           )}
         </section>

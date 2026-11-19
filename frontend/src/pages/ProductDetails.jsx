@@ -1,14 +1,18 @@
 
 import { useState } from "react";
 import { useParams, Link } from "react-router-dom";
+
 import {
   FiShoppingBag,
   FiMinus,
   FiPlus,
   FiArrowLeft,
+  FiHeart,
 } from "react-icons/fi";
 
 import { useCart } from "../context/CartContext";
+import { useWishlist } from "../context/WishlistContext";
+
 import products from "../data/products";
 import "./ProductDetails.css";
 
@@ -18,7 +22,14 @@ function ProductDetails() {
   const product = products.find((item) => item.id === Number(id));
 
   const [quantity, setQuantity] = useState(1);
+
   const { addToCart } = useCart();
+
+  const {
+    addToWishlist,
+    removeFromWishlist,
+    isInWishlist,
+  } = useWishlist();
 
   if (!product) {
     return (
@@ -29,9 +40,19 @@ function ProductDetails() {
     );
   }
 
+  const saved = isInWishlist(product.id);
+
   function handleAddToCart() {
     addToCart(product, quantity);
     alert(`${quantity} x ${product.name} added to cart!`);
+  }
+
+  function handleWishlist() {
+    if (saved) {
+      removeFromWishlist(product.id);
+    } else {
+      addToWishlist(product);
+    }
   }
 
   return (
@@ -42,7 +63,7 @@ function ProductDetails() {
         </Link>
 
         <div className="product-details-grid">
-          <div className="product-details-image">
+          <div className="product-details-image relative">
             <img src={product.image} alt={product.name} />
 
             {product.badge && (
@@ -90,11 +111,35 @@ function ProductDetails() {
               </div>
             </div>
 
+            {/* Add to Cart */}
             <button
               className="product-add-cart-btn"
               onClick={handleAddToCart}
             >
               <FiShoppingBag /> Add to Cart
+            </button>
+
+            {/* Wishlist Button */}
+            <button
+              type="button"
+              onClick={handleWishlist}
+              aria-label={
+                saved
+                  ? "Remove from Wishlist"
+                  : "Add to Wishlist"
+              }
+              className={`mt-3 flex min-h-[48px] w-full items-center justify-center gap-3 border border-[#514b40] px-5 text-sm font-medium transition-all duration-300 hover:bg-[#514b40] hover:text-white ${
+                saved
+                  ? "bg-[#514b40] text-white"
+                  : "bg-transparent text-[#514b40]"
+              }`}
+            >
+              <FiHeart
+                size={18}
+                className={saved ? "fill-current" : ""}
+              />
+
+              {saved ? "Added to Wishlist" : "Add to Wishlist"}
             </button>
 
             <div className="product-details-extra">

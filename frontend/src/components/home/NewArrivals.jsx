@@ -1,7 +1,10 @@
 
 import { Link } from "react-router-dom";
+import { FiHeart } from "react-icons/fi";
 
 import { useCart } from "../../context/CartContext";
+import { useWishlist } from "../../context/WishlistContext";
+
 import products from "../../data/products";
 import "./NewArrivals.css";
 
@@ -11,6 +14,20 @@ const newProducts = products.filter((product) =>
 
 function NewArrivals() {
   const { addToCart } = useCart();
+
+  const {
+    addToWishlist,
+    removeFromWishlist,
+    isInWishlist,
+  } = useWishlist();
+
+  function handleWishlist(product) {
+    if (isInWishlist(product.id)) {
+      removeFromWishlist(product.id);
+    } else {
+      addToWishlist(product);
+    }
+  }
 
   return (
     <section className="new-arrivals-section">
@@ -34,42 +51,67 @@ function NewArrivals() {
         </div>
 
         <div className="new-arrivals-grid">
-          {newProducts.map((product) => (
-            <article className="new-arrival-card" key={product.id}>
-              <div className="new-arrival-image-wrap">
-                <Link to={`/product/${product.id}`}>
-                  <img src={product.image} alt={product.name} />
-                </Link>
+          {newProducts.map((product) => {
+            const saved = isInWishlist(product.id);
 
-                <span className="new-arrival-badge">
-                  {product.badge}
-                </span>
-
-                <button
-                  className="new-arrival-cart-btn"
-                  onClick={() => addToCart(product)}
-                >
-                  Add to Cart
-                </button>
-              </div>
-
-              <div className="new-arrival-info">
-                <span className="new-arrival-category">
-                  {product.category}
-                </span>
-
-                <h3>
+            return (
+              <article className="new-arrival-card" key={product.id}>
+                <div className="new-arrival-image-wrap relative">
                   <Link to={`/product/${product.id}`}>
-                    {product.name}
+                    <img src={product.image} alt={product.name} />
                   </Link>
-                </h3>
 
-                <span className="new-arrival-price">
-                  £{product.price.toFixed(2)}
-                </span>
-              </div>
-            </article>
-          ))}
+                  <span className="new-arrival-badge">
+                    {product.badge}
+                  </span>
+
+                  {/* Wishlist Button */}
+                  <button
+                    type="button"
+                    onClick={() => handleWishlist(product)}
+                    aria-label={
+                      saved
+                        ? `Remove ${product.name} from wishlist`
+                        : `Add ${product.name} to wishlist`
+                    }
+                    title={saved ? "Remove from Wishlist" : "Add to Wishlist"}
+                    className={`absolute top-3 right-3 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-white shadow-md transition-all duration-300 hover:bg-[#514b40] hover:text-white ${
+                      saved ? "text-red-600" : "text-[#514b40]"
+                    }`}
+                  >
+                    <FiHeart
+                      size={19}
+                      className={saved ? "fill-current" : ""}
+                    />
+                  </button>
+
+                  {/* Add to Cart */}
+                  <button
+                    className="new-arrival-cart-btn"
+                    onClick={() => addToCart(product)}
+                  >
+                    Add to Cart
+                  </button>
+                </div>
+
+                <div className="new-arrival-info">
+                  <span className="new-arrival-category">
+                    {product.category}
+                  </span>
+
+                  <h3>
+                    <Link to={`/product/${product.id}`}>
+                      {product.name}
+                    </Link>
+                  </h3>
+
+                  <span className="new-arrival-price">
+                    £{product.price.toFixed(2)}
+                  </span>
+                </div>
+              </article>
+            );
+          })}
         </div>
       </div>
     </section>

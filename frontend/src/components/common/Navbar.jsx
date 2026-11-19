@@ -6,11 +6,13 @@ import {
   FiSearch,
   FiUser,
   FiShoppingBag,
+  FiHeart,
   FiMenu,
   FiX,
 } from "react-icons/fi";
 
 import { useCart } from "../../context/CartContext";
+import { useWishlist } from "../../context/WishlistContext";
 
 import "./Navbar.css";
 
@@ -20,6 +22,8 @@ function Navbar() {
   const [searchTerm, setSearchTerm] = useState("");
 
   const { cartCount } = useCart();
+  const { wishlistCount } = useWishlist();
+
   const navigate = useNavigate();
 
   const navLinks = [
@@ -52,6 +56,7 @@ function Navbar() {
   return (
     <header className="navbar">
       <div className="navbar-container">
+
         {/* Mobile Menu Button */}
         <button
           className="mobile-menu-button"
@@ -79,6 +84,8 @@ function Navbar() {
 
         {/* Navbar Actions */}
         <div className="navbar-actions">
+
+          {/* Search */}
           <button
             aria-label="Search"
             className={`navbar-icon search-toggle ${
@@ -89,9 +96,29 @@ function Navbar() {
             {searchOpen ? <FiX /> : <FiSearch />}
           </button>
 
-          <button aria-label="Account" className="navbar-icon">
+          {/* Account */}
+          <Link
+            to="/login"
+            aria-label="My Account"
+            className="navbar-icon"
+            onClick={closeMenu}
+          >
             <FiUser />
-          </button>
+          </Link>
+
+          {/* Wishlist */}
+          <Link
+            to="/wishlist"
+            className="navbar-icon bag-icon"
+            aria-label={`Wishlist, ${wishlistCount} items`}
+            onClick={closeMenu}
+          >
+            <FiHeart />
+
+            {wishlistCount > 0 && (
+              <span className="cart-count">{wishlistCount}</span>
+            )}
+          </Link>
 
           {/* Shopping Cart */}
           <Link

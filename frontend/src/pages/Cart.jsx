@@ -1,6 +1,11 @@
 
 import { Link } from "react-router-dom";
-import { FiMinus, FiPlus, FiTrash2, FiArrowLeft } from "react-icons/fi";
+import {
+  FiMinus,
+  FiPlus,
+  FiTrash2,
+  FiArrowLeft,
+} from "react-icons/fi";
 
 import { useCart } from "../context/CartContext";
 import "./Cart.css";
@@ -18,10 +23,12 @@ function Cart() {
       <section className="cart-page">
         <div className="cart-container cart-empty">
           <h1>Your Shopping Cart</h1>
+
           <div className="cart-empty-content">
             <span className="cart-empty-icon">🛍️</span>
             <h2>Your cart is empty</h2>
             <p>Discover beautiful furniture for your home.</p>
+
             <Link to="/shop" className="cart-continue-btn">
               Continue Shopping
             </Link>
@@ -126,12 +133,12 @@ function Cart() {
               <strong>£{subtotal.toFixed(2)}</strong>
             </div>
 
-            <button
+            <Link
+              to="/checkout"
               className="cart-checkout-btn"
-              onClick={() => alert("Checkout will be available soon!")}
             >
               Proceed to Checkout
-            </button>
+            </Link>
 
             <p className="cart-delivery-note">
               UK delivery available. Secure shopping guaranteed.
