@@ -1,8 +1,11 @@
+
 import { useState } from "react";
 import { useSearchParams, Link } from "react-router-dom";
 import { FiSliders, FiShoppingBag } from "react-icons/fi";
-import "./Shop.css";
+
+import { useCart } from "../context/CartContext";
 import products from "../data/products";
+import "./Shop.css";
 
 const categories = [
   "All Products",
@@ -17,6 +20,7 @@ const categories = [
 
 function Shop() {
   const [searchParams, setSearchParams] = useSearchParams();
+  const { addToCart } = useCart();
 
   const urlCategory = searchParams.get("category");
 
@@ -31,7 +35,7 @@ function Shop() {
     .filter((product) =>
       activeCategory === "All Products"
         ? true
-        : product.category === activeCategory,
+        : product.category === activeCategory
     )
     .filter((product) => product.price <= maxPrice)
     .sort((a, b) => {
@@ -88,6 +92,7 @@ function Shop() {
 
           <div className="shop-filter-group shop-price-filter">
             <h3>Maximum Price</h3>
+
             <input
               type="range"
               min="100"
@@ -96,6 +101,7 @@ function Shop() {
               value={maxPrice}
               onChange={(e) => setMaxPrice(Number(e.target.value))}
             />
+
             <div className="shop-price-values">
               <span>£100</span>
               <strong>£{maxPrice}</strong>
@@ -142,7 +148,7 @@ function Shop() {
 
                     <button
                       className="shop-add-cart"
-                      onClick={() => alert(`${product.name} added to cart!`)}
+                      onClick={() => addToCart(product)}
                     >
                       <FiShoppingBag /> Add to Cart
                     </button>
@@ -150,9 +156,13 @@ function Shop() {
 
                   <div className="shop-product-info">
                     <span>{product.category}</span>
+
                     <h3>
-                      <Link to={`/product/${product.id}`}>{product.name}</Link>
+                      <Link to={`/product/${product.id}`}>
+                        {product.name}
+                      </Link>
                     </h3>
+
                     <strong>£{product.price.toFixed(2)}</strong>
                   </div>
                 </article>
