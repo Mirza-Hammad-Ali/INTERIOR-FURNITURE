@@ -10,10 +10,14 @@ import {
   FiX,
 } from "react-icons/fi";
 
+import { useCart } from "../../context/CartContext";
+
 import "./Navbar.css";
 
 function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
+
+  const { cartCount } = useCart();
 
   const navLinks = [
     { name: "Home", href: "/" },
@@ -71,9 +75,19 @@ function Navbar() {
             <FiUser />
           </button>
 
-          <button aria-label="Shopping Bag" className="navbar-icon bag-icon">
+          {/* Shopping Cart */}
+          <Link
+            to="/cart"
+            className="navbar-icon bag-icon"
+            aria-label={`Shopping Cart, ${cartCount} items`}
+            onClick={closeMenu}
+          >
             <FiShoppingBag />
-          </button>
+
+            {cartCount > 0 && (
+              <span className="cart-count">{cartCount}</span>
+            )}
+          </Link>
         </div>
 
       </div>

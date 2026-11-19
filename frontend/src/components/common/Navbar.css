@@ -207,6 +207,7 @@
 
   .bag-icon {
     display: none;
+    position: relative;
   }
 }
 
@@ -231,4 +232,23 @@
   .navbar-actions {
     gap: 11px;
   }
+}
+
+/* Cart Count Badge */
+.cart-count {
+  position: absolute;
+  top: -7px;
+  right: -8px;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: #a17c50;
+  color: #ffffff;
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 1;
 }
