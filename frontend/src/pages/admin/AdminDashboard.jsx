@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import {
   FiGrid,
@@ -17,6 +16,7 @@ import {
   FiLogOut,
 } from "react-icons/fi";
 
+import AdminCustomers from "./AdminCustomers";
 import AdminProducts from "./AdminProducts";
 import AdminOrders from "./AdminOrders";
 
@@ -247,7 +247,10 @@ function AdminDashboard() {
             <AdminProducts />
           ) : activeMenu === "Orders" ? (
             <AdminOrders />
+          ) : activeMenu === "Customers" ? (
+            <AdminCustomers />
           ) : activeMenu === "Dashboard" ? (
+            // Yahan tumhara existing Dashboard code rahega
             <>
               {/* Page Heading */}
               <div className="mb-8 flex flex-col justify-between gap-4 sm:flex-row sm:items-center">
@@ -312,9 +315,7 @@ function AdminDashboard() {
                           {stat.change}
                         </span>
 
-                        <span className="text-[#999084]">
-                          from last month
-                        </span>
+                        <span className="text-[#999084]">from last month</span>
                       </div>
                     </div>
                   );
@@ -494,7 +495,7 @@ function AdminDashboard() {
                           <td className="px-6 py-4">
                             <span
                               className={`inline-block px-3 py-1 text-xs ${getStatusStyle(
-                                order.status
+                                order.status,
                               )}`}
                             >
                               {order.status}
