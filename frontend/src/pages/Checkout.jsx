@@ -270,37 +270,67 @@ function Checkout() {
             </h2>
 
             <div className="mt-6 space-y-5">
-              {cartItems.map((item) => (
-                <div
-                  key={item.id}
-                  className="flex gap-4 border-b border-[#eee9e1] pb-5"
-                >
-                  <img
-                    src={item.image}
-                    alt={item.name}
-                    className="h-20 w-20 shrink-0 object-cover"
-                  />
+              {cartItems.map((item) => {
+                const options = item.selectedOptions || {};
+                const itemKey = item.cartItemId || item.id;
 
-                  <div className="min-w-0 flex-1">
-                    <h3 className="text-sm font-medium text-[#29251f]">
-                      {item.name}
-                    </h3>
+                return (
+                  <div
+                    key={itemKey}
+                    className="flex gap-4 border-b border-[#eee9e1] pb-5"
+                  >
+                    <img
+                      src={item.image}
+                      alt={item.name}
+                      className="h-20 w-20 shrink-0 object-cover"
+                    />
 
-                    <p className="mt-1 text-xs text-[#888176]">
-                      Quantity: {item.quantity}
-                    </p>
+                    <div className="min-w-0 flex-1">
+                      <h3 className="text-sm font-medium text-[#29251f]">
+                        {item.name}
+                      </h3>
 
-                    <strong className="mt-2 block text-sm text-[#514b40]">
-                      £{(item.price * item.quantity).toFixed(2)}
-                    </strong>
+                      {options.size && (
+                        <p className="mt-2 text-xs text-[#777064]">
+                          <strong>Size:</strong> {options.size}
+                        </p>
+                      )}
+
+                      {options.fabric && (
+                        <p className="mt-1 text-xs text-[#777064]">
+                          <strong>Fabric:</strong> {options.fabric}
+                        </p>
+                      )}
+
+                      {options.color && (
+                        <p className="mt-1 text-xs text-[#777064]">
+                          <strong>Colour:</strong> {options.color}
+                        </p>
+                      )}
+
+                      {options.mattress && (
+                        <p className="mt-1 text-xs text-[#777064]">
+                          <strong>Mattress:</strong> {options.mattress}
+                        </p>
+                      )}
+
+                      <p className="mt-2 text-xs text-[#888176]">
+                        Quantity: {item.quantity}
+                      </p>
+
+                      <strong className="mt-2 block text-sm text-[#514b40]">
+                        £{(item.price * item.quantity).toFixed(2)}
+                      </strong>
+                    </div>
                   </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
 
             <div className="mt-6 space-y-4">
               <div className="flex justify-between text-sm text-[#777064]">
                 <span>Subtotal</span>
+
                 <strong className="text-[#29251f]">
                   £{subtotal.toFixed(2)}
                 </strong>
@@ -308,6 +338,7 @@ function Checkout() {
 
               <div className="flex justify-between text-sm text-[#777064]">
                 <span>Delivery</span>
+
                 <span className="text-right text-xs text-[#888176]">
                   To be confirmed
                 </span>

@@ -19,8 +19,6 @@ function CartDrawer() {
     addToCart,
   } = useCart();
 
-  const isOpen = Boolean(cartPopupProduct);
-
   if (!cartPopupProduct) {
     return null;
   }
@@ -42,6 +40,8 @@ function CartDrawer() {
     0
   );
 
+  const selectedOptions = cartPopupProduct.selectedOptions || {};
+
   return (
     <div className="fixed inset-0 z-[9999]">
       {/* Background Overlay */}
@@ -49,17 +49,12 @@ function CartDrawer() {
         type="button"
         aria-label="Close shopping bag"
         onClick={closeCartPopup}
-        className={`absolute inset-0 h-full w-full bg-black/50 transition-opacity duration-300 ${
-          isOpen ? "opacity-100" : "opacity-0"
-        }`}
+        className="absolute inset-0 h-full w-full bg-black/50 transition-opacity duration-300"
       />
 
       {/* Drawer */}
-      <aside
-        className={`absolute right-0 top-0 flex h-full w-full max-w-[480px] flex-col bg-[#FAF8F4] shadow-2xl transition-transform duration-300 ease-in-out sm:w-[480px] ${
-          isOpen ? "translate-x-0" : "translate-x-full"
-        }`}
-      >
+      <aside className="absolute right-0 top-0 flex h-full w-full max-w-[480px] flex-col bg-[#FAF8F4] shadow-2xl sm:w-[480px]">
+
         {/* Header */}
         <div className="flex items-center justify-between border-b border-[#E9E3D9] px-6 py-5">
           <div className="flex items-center gap-3">
@@ -89,6 +84,7 @@ function CartDrawer() {
 
         {/* Drawer Content */}
         <div className="flex-1 overflow-y-auto px-6 py-6">
+
           <p className="mb-5 text-sm leading-6 text-[#514B40]">
             <span className="font-semibold text-[#29251F]">
               {cartPopupProduct.name}
@@ -118,6 +114,39 @@ function CartDrawer() {
               <p className="mt-1 line-clamp-2 text-xs leading-5 text-[#777064]">
                 {cartPopupProduct.description}
               </p>
+
+              {/* Customized Product Options */}
+              {Object.keys(selectedOptions).length > 0 && (
+                <div className="mt-3 space-y-1.5 rounded-md bg-[#F0EDE6] p-3">
+                  {selectedOptions.size && (
+                    <p className="text-xs text-[#514B40]">
+                      <span className="font-semibold">Size:</span>{" "}
+                      {selectedOptions.size}
+                    </p>
+                  )}
+
+                  {selectedOptions.fabric && (
+                    <p className="text-xs text-[#514B40]">
+                      <span className="font-semibold">Fabric:</span>{" "}
+                      {selectedOptions.fabric}
+                    </p>
+                  )}
+
+                  {selectedOptions.color && (
+                    <p className="text-xs text-[#514B40]">
+                      <span className="font-semibold">Colour:</span>{" "}
+                      {selectedOptions.color}
+                    </p>
+                  )}
+
+                  {selectedOptions.mattress && (
+                    <p className="text-xs text-[#514B40]">
+                      <span className="font-semibold">Mattress:</span>{" "}
+                      {selectedOptions.mattress}
+                    </p>
+                  )}
+                </div>
+              )}
 
               <div className="mt-auto flex flex-wrap items-center gap-2 pt-3">
                 <span className="text-sm font-semibold text-[#29251F]">
@@ -204,9 +233,9 @@ function CartDrawer() {
           </div>
         </div>
 
-        {/* Bottom Summary and Buttons */}
+        {/* Bottom Summary */}
         <div className="border-t border-[#E9E3D9] bg-[#FAF8F4] px-6 py-5">
-          {/* Shopping Bag Summary */}
+
           <div className="mb-5 space-y-3">
             <div className="flex items-center justify-between text-sm text-[#514B40]">
               <span>Items in your bag</span>
