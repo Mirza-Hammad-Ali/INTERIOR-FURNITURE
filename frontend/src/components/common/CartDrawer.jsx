@@ -1,12 +1,19 @@
 
 import { Link } from "react-router-dom";
-import { FiX, FiCheck, FiShoppingBag, FiArrowRight } from "react-icons/fi";
+import {
+  FiX,
+  FiCheck,
+  FiShoppingBag,
+  FiArrowRight,
+} from "react-icons/fi";
 
 import { useCart } from "../../context/CartContext";
 import products from "../../data/products";
 
 function CartDrawer() {
   const {
+    cartItems,
+    cartCount,
     cartPopupProduct,
     closeCartPopup,
     addToCart,
@@ -29,6 +36,11 @@ function CartDrawer() {
 
   const formatPrice = (price) =>
     `£${Number(price || 0).toFixed(2)}`;
+
+  const subtotal = cartItems.reduce(
+    (total, item) => total + item.price * item.quantity,
+    0
+  );
 
   return (
     <div className="fixed inset-0 z-[9999]">
@@ -192,8 +204,32 @@ function CartDrawer() {
           </div>
         </div>
 
-        {/* Bottom Buttons */}
+        {/* Bottom Summary and Buttons */}
         <div className="border-t border-[#E9E3D9] bg-[#FAF8F4] px-6 py-5">
+          {/* Shopping Bag Summary */}
+          <div className="mb-5 space-y-3">
+            <div className="flex items-center justify-between text-sm text-[#514B40]">
+              <span>Items in your bag</span>
+              <span className="font-semibold text-[#29251F]">
+                {cartCount}
+              </span>
+            </div>
+
+            <div className="flex items-center justify-between border-t border-[#E9E3D9] pt-3">
+              <span className="text-sm font-semibold text-[#29251F]">
+                Subtotal
+              </span>
+
+              <span className="text-lg font-semibold text-[#29251F]">
+                {formatPrice(subtotal)}
+              </span>
+            </div>
+
+            <p className="text-xs text-[#8A806F]">
+              Delivery charges calculated at checkout.
+            </p>
+          </div>
+
           <Link
             to="/cart"
             onClick={closeCartPopup}

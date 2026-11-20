@@ -44,7 +44,6 @@ function ProductDetails() {
 
   function handleAddToCart() {
     addToCart(product, quantity);
-    alert(`${quantity} x ${product.name} added to cart!`);
   }
 
   function handleWishlist() {

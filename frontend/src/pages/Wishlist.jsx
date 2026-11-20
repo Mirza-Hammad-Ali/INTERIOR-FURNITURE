@@ -111,7 +111,6 @@ function Wishlist() {
                         className="wishlist-add-cart-btn"
                         onClick={() => {
                           addToCart(product);
-                          alert(`${product.name} added to cart!`);
                         }}
                       >
                         <FiShoppingBag />

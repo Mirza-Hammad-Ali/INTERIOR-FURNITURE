@@ -132,7 +132,6 @@ function BestSellers() {
                     className="best-seller-cart-btn"
                     onClick={() => {
                       addToCart(product);
-                      alert(`${product.name} added to cart!`);
                     }}
                   >
                     Add to Cart
