@@ -1,4 +1,5 @@
 
+import { Link } from "react-router-dom";
 import "./FeaturedCategories.css";
 
 const categories = [
@@ -57,7 +58,6 @@ function FeaturedCategories() {
   return (
     <section className="featured-categories" id="categories">
       <div className="categories-container">
-
         <div className="categories-heading">
           <span className="categories-eyebrow">
             EXPLORE OUR COLLECTION
@@ -76,8 +76,8 @@ function FeaturedCategories() {
 
         <div className="categories-grid">
           {categories.map((category) => (
-            <a
-              href="#shop"
+            <Link
+              to={`/shop?category=${encodeURIComponent(category.name)}`}
               className="category-card"
               key={category.id}
             >
@@ -102,10 +102,9 @@ function FeaturedCategories() {
                   0{category.id}
                 </span>
               </div>
-            </a>
+            </Link>
           ))}
         </div>
-
       </div>
     </section>
   );

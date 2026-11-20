@@ -1,5 +1,10 @@
 
-import { createContext, useContext, useEffect, useState } from "react";
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 
 const CartContext = createContext();
 
@@ -12,6 +17,8 @@ export function CartProvider({ children }) {
       return [];
     }
   });
+
+  const [cartPopupProduct, setCartPopupProduct] = useState(null);
 
   useEffect(() => {
     localStorage.setItem("furniture-cart", JSON.stringify(cartItems));
@@ -33,6 +40,16 @@ export function CartProvider({ children }) {
 
       return [...currentItems, { ...product, quantity }];
     });
+
+    setCartPopupProduct({
+      ...product,
+      addedQuantity: quantity,
+      popupKey: Date.now(),
+    });
+  }
+
+  function closeCartPopup() {
+    setCartPopupProduct(null);
   }
 
   function updateQuantity(productId, quantity) {
@@ -69,6 +86,8 @@ export function CartProvider({ children }) {
         updateQuantity,
         removeFromCart,
         clearCart,
+        cartPopupProduct,
+        closeCartPopup,
       }}
     >
       {children}
