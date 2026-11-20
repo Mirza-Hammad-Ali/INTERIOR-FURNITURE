@@ -4,6 +4,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { CartProvider } from "./context/CartContext";
 import { WishlistProvider } from "./context/WishlistContext";
 
+import CartDrawer from "./components/common/CartDrawer";
+
 import Home from "./pages/Home";
 import Shop from "./pages/Shop";
 import ProductDetails from "./pages/ProductDetails";
@@ -27,6 +29,8 @@ function App() {
     <CartProvider>
       <WishlistProvider>
         <BrowserRouter>
+          <CartDrawer />
+
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/shop" element={<Shop />} />
