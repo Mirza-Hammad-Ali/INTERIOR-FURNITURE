@@ -145,6 +145,116 @@ const products = [
     description:
       "An elegant upholstered sofa designed to create a sophisticated and comfortable living room.",
   },
+
+ 
+{
+  id: 13,
+  name: "New Brand Divan Beds with Panel Headboard",
+  category: "Beds",
+  price: 190,
+  withMattressPrice: 230,
+  oldPrice: 190,
+  image: "/images/new-brand-divan-bed.jpg",
+  badge: "NEW ARRIVAL",
+  description:
+    "A stylish upholstered divan bed featuring a modern vertical panel headboard and elegant fabric finish. Customise your bed by choosing your preferred size, fabric and colour, with or without a mattress.",
+
+  sizes: [
+    {
+      name: "Single",
+      dimension: "3ft",
+      withoutMattress: 190,
+      withMattress: 230,
+    },
+    {
+      name: "Small Double",
+      dimension: "4ft",
+      withoutMattress: 210,
+      withMattress: 250,
+    },
+    {
+      name: "Double",
+      dimension: "4ft 6",
+      withoutMattress: 230,
+      withMattress: 270,
+    },
+    {
+      name: "King",
+      dimension: "5ft",
+      withoutMattress: 260,
+      withMattress: 300,
+    },
+  ],
+
+  fabrics: [
+    {
+      name: "Plush Velvet",
+      colors: [
+        "Steel",
+        "Silver",
+        "Grey",
+        "Black",
+        "Sapphire",
+        "White",
+        "Mustard Gold",
+        "Duck Egg",
+        "Beige",
+        "Teal",
+        "Maroon",
+        "Pink",
+      ],
+    },
+    {
+      name: "Chenille",
+      colors: [
+        "Mink",
+        "Beige",
+        "Brown",
+        "Silver",
+        "Charcoal",
+        "Teal",
+        "Purple",
+        "Maroon",
+        "Red",
+        "Black",
+      ],
+    },
+    {
+      name: "Crushed Velvet",
+      colors: [
+        "White",
+        "Silver",
+        "Gold",
+        "Beige",
+        "Grey",
+        "Pink",
+        "Mink",
+        "Teal",
+        "Denim Blue",
+        "Red",
+        "Black",
+        "Aubergine",
+      ],
+    },
+    {
+      name: "Naples",
+      colors: [
+        "Cream",
+        "Mink",
+        "Beige",
+        "Silver",
+        "Grey",
+        "Charcoal",
+        "Teal",
+        "Blue",
+        "Purple",
+        "Black",
+      ],
+    },
+  ],
+},
+
+
 ];
 
 export default products;

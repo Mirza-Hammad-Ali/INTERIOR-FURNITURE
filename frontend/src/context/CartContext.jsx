@@ -25,24 +25,38 @@ export function CartProvider({ children }) {
   }, [cartItems]);
 
   function addToCart(product, quantity = 1) {
+    const selectedOptions = product.selectedOptions || {};
+
+    const variantKey = JSON.stringify(selectedOptions);
+
+    const cartItem = {
+      ...product,
+      selectedOptions,
+      variantKey,
+      cartItemId: `${product.id}-${variantKey}`,
+      quantity,
+    };
+
     setCartItems((currentItems) => {
       const existingItem = currentItems.find(
-        (item) => item.id === product.id
+        (item) =>
+          item.id === product.id &&
+          JSON.stringify(item.selectedOptions || {}) === variantKey
       );
 
       if (existingItem) {
         return currentItems.map((item) =>
-          item.id === product.id
+          item.cartItemId === existingItem.cartItemId
             ? { ...item, quantity: item.quantity + quantity }
             : item
         );
       }
 
-      return [...currentItems, { ...product, quantity }];
+      return [...currentItems, cartItem];
     });
 
     setCartPopupProduct({
-      ...product,
+      ...cartItem,
       addedQuantity: quantity,
       popupKey: Date.now(),
     });
@@ -52,19 +66,23 @@ export function CartProvider({ children }) {
     setCartPopupProduct(null);
   }
 
-  function updateQuantity(productId, quantity) {
+  function updateQuantity(cartItemId, quantity) {
     if (quantity < 1) return;
 
     setCartItems((currentItems) =>
       currentItems.map((item) =>
-        item.id === productId ? { ...item, quantity } : item
+        (item.cartItemId || item.id) === cartItemId
+          ? { ...item, quantity }
+          : item
       )
     );
   }
 
-  function removeFromCart(productId) {
+  function removeFromCart(cartItemId) {
     setCartItems((currentItems) =>
-      currentItems.filter((item) => item.id !== productId)
+      currentItems.filter(
+        (item) => (item.cartItemId || item.id) !== cartItemId
+      )
     );
   }
 

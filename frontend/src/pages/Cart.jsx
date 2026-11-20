@@ -45,7 +45,10 @@ function Cart() {
           <div>
             <span>YOUR SELECTION</span>
             <h1>Your Shopping Cart</h1>
-            <p>{cartItems.length} different products in your cart</p>
+            <p>
+              {cartItems.reduce((total, item) => total + item.quantity, 0)}
+              {" "}items in your cart
+            </p>
           </div>
 
           <Link to="/shop" className="cart-back-link">
@@ -55,64 +58,99 @@ function Cart() {
 
         <div className="cart-layout">
           <div className="cart-items">
-            {cartItems.map((item) => (
-              <article className="cart-item" key={item.id}>
-                <Link
-                  to={`/product/${item.id}`}
-                  className="cart-item-image"
-                >
-                  <img src={item.image} alt={item.name} />
-                </Link>
+            {cartItems.map((item) => {
+              const options = item.selectedOptions || {};
+              const itemKey = item.cartItemId || item.id;
 
-                <div className="cart-item-details">
-                  <span>{item.category}</span>
+              return (
+                <article className="cart-item" key={itemKey}>
+                  <Link
+                    to={`/product/${item.id}`}
+                    className="cart-item-image"
+                  >
+                    <img src={item.image} alt={item.name} />
+                  </Link>
 
-                  <h3>
-                    <Link to={`/product/${item.id}`}>
-                      {item.name}
-                    </Link>
-                  </h3>
+                  <div className="cart-item-details">
+                    <span>{item.category}</span>
 
-                  <strong>£{item.price.toFixed(2)}</strong>
+                    <h3>
+                      <Link to={`/product/${item.id}`}>
+                        {item.name}
+                      </Link>
+                    </h3>
 
-                  <div className="cart-item-actions">
-                    <div className="cart-quantity">
+                    {Object.keys(options).length > 0 && (
+                      <div className="mt-3 space-y-1 text-sm text-[#6b6257]">
+                        {options.size && (
+                          <p>
+                            <strong>Size:</strong> {options.size}
+                          </p>
+                        )}
+
+                        {options.fabric && (
+                          <p>
+                            <strong>Fabric:</strong> {options.fabric}
+                          </p>
+                        )}
+
+                        {options.color && (
+                          <p>
+                            <strong>Colour:</strong> {options.color}
+                          </p>
+                        )}
+
+                        {options.mattress && (
+                          <p>
+                            <strong>Mattress:</strong> {options.mattress}
+                          </p>
+                        )}
+                      </div>
+                    )}
+
+                    <strong className="mt-3 block">
+                      £{item.price.toFixed(2)}
+                    </strong>
+
+                    <div className="cart-item-actions">
+                      <div className="cart-quantity">
+                        <button
+                          onClick={() =>
+                            updateQuantity(itemKey, item.quantity - 1)
+                          }
+                          disabled={item.quantity <= 1}
+                          aria-label="Decrease quantity"
+                        >
+                          <FiMinus />
+                        </button>
+
+                        <span>{item.quantity}</span>
+
+                        <button
+                          onClick={() =>
+                            updateQuantity(itemKey, item.quantity + 1)
+                          }
+                          aria-label="Increase quantity"
+                        >
+                          <FiPlus />
+                        </button>
+                      </div>
+
                       <button
-                        onClick={() =>
-                          updateQuantity(item.id, item.quantity - 1)
-                        }
-                        disabled={item.quantity <= 1}
-                        aria-label="Decrease quantity"
+                        className="cart-remove-btn"
+                        onClick={() => removeFromCart(itemKey)}
                       >
-                        <FiMinus />
-                      </button>
-
-                      <span>{item.quantity}</span>
-
-                      <button
-                        onClick={() =>
-                          updateQuantity(item.id, item.quantity + 1)
-                        }
-                        aria-label="Increase quantity"
-                      >
-                        <FiPlus />
+                        <FiTrash2 /> Remove
                       </button>
                     </div>
-
-                    <button
-                      className="cart-remove-btn"
-                      onClick={() => removeFromCart(item.id)}
-                    >
-                      <FiTrash2 /> Remove
-                    </button>
                   </div>
-                </div>
 
-                <div className="cart-item-total">
-                  £{(item.price * item.quantity).toFixed(2)}
-                </div>
-              </article>
-            ))}
+                  <div className="cart-item-total">
+                    £{(item.price * item.quantity).toFixed(2)}
+                  </div>
+                </article>
+              );
+            })}
           </div>
 
           <aside className="cart-summary">
@@ -133,10 +171,7 @@ function Cart() {
               <strong>£{subtotal.toFixed(2)}</strong>
             </div>
 
-            <Link
-              to="/checkout"
-              className="cart-checkout-btn"
-            >
+            <Link to="/checkout" className="cart-checkout-btn">
               Proceed to Checkout
             </Link>
 
