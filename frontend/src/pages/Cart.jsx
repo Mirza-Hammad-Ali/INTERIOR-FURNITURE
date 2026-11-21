@@ -1,11 +1,5 @@
-
 import { Link } from "react-router-dom";
-import {
-  FiMinus,
-  FiPlus,
-  FiTrash2,
-  FiArrowLeft,
-} from "react-icons/fi";
+import { FiMinus, FiPlus, FiTrash2, FiArrowLeft } from "react-icons/fi";
 
 import { useCart } from "../context/CartContext";
 import "./Cart.css";
@@ -15,7 +9,7 @@ function Cart() {
 
   const subtotal = cartItems.reduce(
     (total, item) => total + item.price * item.quantity,
-    0
+    0,
   );
 
   if (cartItems.length === 0) {
@@ -46,8 +40,8 @@ function Cart() {
             <span>YOUR SELECTION</span>
             <h1>Your Shopping Cart</h1>
             <p>
-              {cartItems.reduce((total, item) => total + item.quantity, 0)}
-              {" "}items in your cart
+              {cartItems.reduce((total, item) => total + item.quantity, 0)}{" "}
+              items in your cart
             </p>
           </div>
 
@@ -64,10 +58,7 @@ function Cart() {
 
               return (
                 <article className="cart-item" key={itemKey}>
-                  <Link
-                    to={`/product/${item.id}`}
-                    className="cart-item-image"
-                  >
+                  <Link to={`/product/${item.id}`} className="cart-item-image">
                     <img src={item.image} alt={item.name} />
                   </Link>
 
@@ -75,9 +66,7 @@ function Cart() {
                     <span>{item.category}</span>
 
                     <h3>
-                      <Link to={`/product/${item.id}`}>
-                        {item.name}
-                      </Link>
+                      <Link to={`/product/${item.id}`}>{item.name}</Link>
                     </h3>
 
                     {Object.keys(options).length > 0 && (
