@@ -1,4 +1,3 @@
-
 import { Link } from "react-router-dom";
 import {
   FiArrowRight,
@@ -82,15 +81,15 @@ function About() {
             </h2>
 
             <p className="mt-6 text-sm leading-8 text-[#777064]">
-              At INTERIOR FURNITURE UK, we believe that furniture is more
-              than just something you put in a room. It creates comfort,
-              expresses personality and makes everyday moments special.
+              At INTERIOR FURNITURE UK, we believe that furniture is more than
+              just something you put in a room. It creates comfort, expresses
+              personality and makes everyday moments special.
             </p>
 
             <p className="mt-4 text-sm leading-8 text-[#777064]">
               Our collection brings together stylish designs, practical
-              functionality and timeless appeal to help you create a home
-              you truly love.
+              functionality and timeless appeal to help you create a home you
+              truly love.
             </p>
 
             <Link
@@ -116,9 +115,9 @@ function About() {
           </h2>
 
           <p className="mt-7 text-sm leading-8 text-[#777064] sm:text-base">
-            Our mission is to make it easier for people to find furniture
-            that suits their lifestyle, complements their space and brings
-            lasting comfort to everyday living.
+            Our mission is to make it easier for people to find furniture that
+            suits their lifestyle, complements their space and brings lasting
+            comfort to everyday living.
           </p>
         </div>
       </section>
@@ -136,8 +135,8 @@ function About() {
             </h2>
 
             <p className="mx-auto mt-5 max-w-xl text-sm leading-7 text-[#777064]">
-              We focus on the things that make furniture shopping
-              comfortable, convenient and enjoyable.
+              We focus on the things that make furniture shopping comfortable,
+              convenient and enjoyable.
             </p>
           </div>
 
@@ -171,8 +170,8 @@ function About() {
         </h2>
 
         <p className="mx-auto mt-5 max-w-xl text-sm leading-7 text-white/70">
-          Discover furniture designed to make your living spaces
-          more comfortable and elegant.
+          Discover furniture designed to make your living spaces more
+          comfortable and elegant.
         </p>
 
         <Link
