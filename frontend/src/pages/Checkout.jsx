@@ -1,4 +1,3 @@
-
 import { Link, useNavigate } from "react-router-dom";
 import { FiArrowLeft, FiLock, FiTruck } from "react-icons/fi";
 import { useCart } from "../context/CartContext";
@@ -9,7 +8,7 @@ function Checkout() {
 
   const subtotal = cartItems.reduce(
     (total, item) => total + item.price * item.quantity,
-    0
+    0,
   );
 
   function handleSubmit(e) {
@@ -212,9 +211,7 @@ function Checkout() {
                     autoComplete="country-name"
                     className="w-full border border-[#e9e3d9] bg-[#faf8f4] px-4 py-3 text-sm outline-none transition focus:border-[#a17c50]"
                   >
-                    <option value="United Kingdom">
-                      United Kingdom
-                    </option>
+                    <option value="United Kingdom">United Kingdom</option>
                   </select>
                 </div>
 
@@ -265,9 +262,7 @@ function Checkout() {
 
           {/* Order Summary */}
           <aside className="border border-[#e9e3d9] bg-white p-6 sm:p-8 lg:sticky lg:top-8">
-            <h2 className="font-serif text-2xl text-[#29251f]">
-              Your Order
-            </h2>
+            <h2 className="font-serif text-2xl text-[#29251f]">Your Order</h2>
 
             <div className="mt-6 space-y-5">
               {cartItems.map((item) => {
