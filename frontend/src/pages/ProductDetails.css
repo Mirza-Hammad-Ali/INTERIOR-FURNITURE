@@ -1,4 +1,3 @@
-
 .product-details-page {
   background: #faf8f4;
   min-height: 600px;
@@ -393,7 +392,7 @@
   background: #f1e4d0;
 }
 
-.selected-price-box > div > strong {
+.selected-price-box>div>strong {
   color: #29251f;
   font-size: 13px;
 }
@@ -422,7 +421,7 @@
   margin-top: 15px;
 }
 
-.product-quantity > span {
+.product-quantity>span {
   display: block;
   color: #29251f;
   font-size: 12px;
@@ -517,7 +516,7 @@
   text-align: center;
 }
 
-.product-details-extra div + div {
+.product-details-extra div+div {
   border-left: 1px solid #d9d0c5;
 }
 
