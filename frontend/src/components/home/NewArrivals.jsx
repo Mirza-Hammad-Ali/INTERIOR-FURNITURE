@@ -1,4 +1,3 @@
-
 import { Link } from "react-router-dom";
 import { FiHeart } from "react-icons/fi";
 
@@ -9,17 +8,13 @@ import products from "../../data/products";
 import "./NewArrivals.css";
 
 const newProducts = products.filter((product) =>
-  [9, 10, 11, 12].includes(product.id)
+  [9, 10, 11, 12].includes(product.id),
 );
 
 function NewArrivals() {
   const { addToCart } = useCart();
 
-  const {
-    addToWishlist,
-    removeFromWishlist,
-    isInWishlist,
-  } = useWishlist();
+  const { addToWishlist, removeFromWishlist, isInWishlist } = useWishlist();
 
   function handleWishlist(product) {
     if (isInWishlist(product.id)) {
@@ -61,9 +56,7 @@ function NewArrivals() {
                     <img src={product.image} alt={product.name} />
                   </Link>
 
-                  <span className="new-arrival-badge">
-                    {product.badge}
-                  </span>
+                  <span className="new-arrival-badge">{product.badge}</span>
 
                   {/* Wishlist Button */}
                   <button
@@ -100,9 +93,7 @@ function NewArrivals() {
                   </span>
 
                   <h3>
-                    <Link to={`/product/${product.id}`}>
-                      {product.name}
-                    </Link>
+                    <Link to={`/product/${product.id}`}>{product.name}</Link>
                   </h3>
 
                   <span className="new-arrival-price">
