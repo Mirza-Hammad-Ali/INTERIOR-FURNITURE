@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { useParams, Link } from "react-router-dom";
 
@@ -58,29 +57,25 @@ function ProductDetails() {
   const product = products.find((item) => item.id === Number(id));
 
   const isCustomBed = Boolean(
-    product?.sizes?.length && product?.fabrics?.length
+    product?.sizes?.length && product?.fabrics?.length,
   );
 
   const [quantity, setQuantity] = useState(1);
   const [selectedSize, setSelectedSize] = useState(
-    product?.sizes?.[0]?.name || ""
+    product?.sizes?.[0]?.name || "",
   );
   const [selectedFabric, setSelectedFabric] = useState(
-    product?.fabrics?.[0]?.name || ""
+    product?.fabrics?.[0]?.name || "",
   );
   const [selectedColor, setSelectedColor] = useState(
-    product?.fabrics?.[0]?.colors?.[0] || ""
+    product?.fabrics?.[0]?.colors?.[0] || "",
   );
   const [mattress, setMattress] = useState("Without Mattress");
   const [activeImage, setActiveImage] = useState(product?.image || "");
 
   const { addToCart } = useCart();
 
-  const {
-    addToWishlist,
-    removeFromWishlist,
-    isInWishlist,
-  } = useWishlist();
+  const { addToWishlist, removeFromWishlist, isInWishlist } = useWishlist();
 
   if (!product) {
     return (
@@ -120,9 +115,7 @@ function ProductDetails() {
     const fabricName = e.target.value;
     setSelectedFabric(fabricName);
 
-    const fabric = product.fabrics.find(
-      (item) => item.name === fabricName
-    );
+    const fabric = product.fabrics.find((item) => item.name === fabricName);
 
     setSelectedColor(fabric?.colors?.[0] || "");
   }
@@ -157,14 +150,12 @@ function ProductDetails() {
   return (
     <section className="product-details-page">
       <div className="product-details-container">
-
         <Link to="/shop" className="product-back-link">
           <FiArrowLeft />
           Back to Shop
         </Link>
 
         <div className="product-details-grid">
-
           {/* LEFT: Product Gallery */}
           <div className="product-gallery">
             <div className="product-details-image">
@@ -175,9 +166,7 @@ function ProductDetails() {
               />
 
               {product.badge && (
-                <span className="product-details-badge">
-                  {product.badge}
-                </span>
+                <span className="product-details-badge">{product.badge}</span>
               )}
 
               <button
@@ -209,16 +198,17 @@ function ProductDetails() {
 
           {/* RIGHT: Product Information */}
           <div className="product-details-info">
-
-            <span className="product-details-category">
-              {product.category}
-            </span>
+            <span className="product-details-category">{product.category}</span>
 
             <h1>{product.name}</h1>
 
             <div className="product-rating">
               <span className="rating-stars">
-                <FiStar /><FiStar /><FiStar /><FiStar /><FiStar />
+                <FiStar />
+                <FiStar />
+                <FiStar />
+                <FiStar />
+                <FiStar />
               </span>
               <span>4.8 (124 reviews)</span>
             </div>
@@ -231,18 +221,13 @@ function ProductDetails() {
               )}
             </div>
 
-            <p className="product-details-description">
-              {product.description}
-            </p>
+            <p className="product-details-description">{product.description}</p>
 
             {isCustomBed && (
               <div className="product-customization">
-
                 {/* Bed Sizes */}
                 <div className="custom-option">
-                  <label className="option-heading">
-                    Select Bed Size
-                  </label>
+                  <label className="option-heading">Select Bed Size</label>
 
                   <div className="bed-size-grid">
                     {product.sizes.map((size) => {
@@ -270,9 +255,7 @@ function ProductDetails() {
                             />
                           </div>
 
-                          <span className="bed-size-name">
-                            {size.name}
-                          </span>
+                          <span className="bed-size-name">{size.name}</span>
 
                           <span className="bed-size-dimension">
                             {size.dimension}
@@ -340,9 +323,7 @@ function ProductDetails() {
 
                 {/* Mattress */}
                 <div className="custom-option">
-                  <span className="option-heading">
-                    Mattress Option
-                  </span>
+                  <span className="option-heading">Mattress Option</span>
 
                   <div className="mattress-options">
                     {["Without Mattress", "With Mattress"].map((option) => (
@@ -366,7 +347,8 @@ function ProductDetails() {
                   <div>
                     <strong>Your selected price</strong>
                     <p>
-                      {selectedSize} · {selectedFabric} · {selectedColor} · {mattress}
+                      {selectedSize} · {selectedFabric} · {selectedColor} ·{" "}
+                      {mattress}
                     </p>
                   </div>
 
@@ -415,9 +397,7 @@ function ProductDetails() {
               <button
                 type="button"
                 onClick={handleWishlist}
-                className={`product-wishlist-btn ${
-                  saved ? "active" : ""
-                }`}
+                className={`product-wishlist-btn ${saved ? "active" : ""}`}
               >
                 <FiHeart className={saved ? "fill-heart" : ""} />
                 {saved ? "Added to Wishlist" : "Add to Wishlist"}
@@ -441,7 +421,6 @@ function ProductDetails() {
                 <span>Quality Furniture</span>
               </div>
             </div>
-
           </div>
         </div>
       </div>
