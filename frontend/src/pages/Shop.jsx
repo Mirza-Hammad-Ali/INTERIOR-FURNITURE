@@ -1,12 +1,7 @@
-
 import { useState } from "react";
 import { useSearchParams, Link } from "react-router-dom";
 
-import {
-  FiSliders,
-  FiShoppingBag,
-  FiHeart,
-} from "react-icons/fi";
+import { FiSliders, FiShoppingBag, FiHeart } from "react-icons/fi";
 
 import { useCart } from "../context/CartContext";
 import { useWishlist } from "../context/WishlistContext";
@@ -31,11 +26,7 @@ function Shop() {
 
   const { addToCart } = useCart();
 
-  const {
-    addToWishlist,
-    removeFromWishlist,
-    isInWishlist,
-  } = useWishlist();
+  const { addToWishlist, removeFromWishlist, isInWishlist } = useWishlist();
 
   const urlCategory = searchParams.get("category");
   const searchTerm = searchParams.get("search") || "";
@@ -51,7 +42,7 @@ function Shop() {
     .filter((product) =>
       activeCategory === "All Products"
         ? true
-        : product.category === activeCategory
+        : product.category === activeCategory,
     )
     .filter((product) => product.price <= maxPrice)
     .filter((product) => {
@@ -105,9 +96,7 @@ function Shop() {
       <section className="shop-page-banner">
         <span>EXPLORE OUR COLLECTION</span>
         <h1>Shop Furniture</h1>
-        <p>
-          Thoughtfully selected furniture for beautiful everyday living.
-        </p>
+        <p>Thoughtfully selected furniture for beautiful everyday living.</p>
       </section>
 
       <div className="shop-container">
@@ -209,9 +198,7 @@ function Shop() {
                             : `Add ${product.name} to wishlist`
                         }
                         title={
-                          saved
-                            ? "Remove from Wishlist"
-                            : "Add to Wishlist"
+                          saved ? "Remove from Wishlist" : "Add to Wishlist"
                         }
                         className={`absolute top-3 right-3 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-white shadow-md transition-all duration-300 hover:bg-[#514b40] hover:text-white ${
                           saved ? "text-red-600" : "text-[#514b40]"
