@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -56,7 +55,6 @@ function Navbar() {
   return (
     <header className="navbar">
       <div className="navbar-container">
-
         {/* Mobile Menu Button */}
         <button
           className="mobile-menu-button"
@@ -84,7 +82,6 @@ function Navbar() {
 
         {/* Navbar Actions */}
         <div className="navbar-actions">
-
           {/* Search */}
           <button
             aria-label="Search"
@@ -129,9 +126,7 @@ function Navbar() {
           >
             <FiShoppingBag />
 
-            {cartCount > 0 && (
-              <span className="cart-count">{cartCount}</span>
-            )}
+            {cartCount > 0 && <span className="cart-count">{cartCount}</span>}
           </Link>
         </div>
       </div>
