@@ -1,4 +1,3 @@
-
 import { useMemo, useState } from "react";
 import {
   FiSearch,
@@ -91,12 +90,12 @@ function AdminCustomers() {
 
   const totalOrders = customers.reduce(
     (total, customer) => total + customer.orders,
-    0
+    0,
   );
 
   const totalSpent = customers.reduce(
     (total, customer) => total + customer.spent,
-    0
+    0,
   );
 
   const stats = [
@@ -120,9 +119,7 @@ function AdminCustomers() {
   return (
     <div className="space-y-7">
       <div>
-        <h2 className="text-2xl font-serif text-[#29251F]">
-          Customers
-        </h2>
+        <h2 className="text-2xl font-serif text-[#29251F]">Customers</h2>
         <p className="mt-1 text-sm text-[#82796D]">
           View and manage your store customers.
         </p>
@@ -140,9 +137,7 @@ function AdminCustomers() {
             >
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm text-[#82796D]">
-                    {stat.title}
-                  </p>
+                  <p className="text-sm text-[#82796D]">{stat.title}</p>
                   <h3 className="mt-2 text-2xl font-semibold text-[#29251F]">
                     {stat.value}
                   </h3>
@@ -209,10 +204,7 @@ function AdminCustomers() {
 
             <tbody className="divide-y divide-[#F0EBE3]">
               {filteredCustomers.map((customer) => (
-                <tr
-                  key={customer.id}
-                  className="hover:bg-[#FAF8F4]"
-                >
+                <tr key={customer.id} className="hover:bg-[#FAF8F4]">
                   <td className="px-5 py-4">
                     <p className="font-medium text-[#29251F]">
                       {customer.name}
