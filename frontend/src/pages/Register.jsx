@@ -1,12 +1,6 @@
-
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import {
-  FiUser,
-  FiMail,
-  FiLock,
-  FiArrowRight,
-} from "react-icons/fi";
+import { FiUser, FiMail, FiLock, FiArrowRight } from "react-icons/fi";
 
 import AnnouncementBar from "../components/common/AnnouncementBar";
 import Navbar from "../components/common/Navbar";
@@ -42,8 +36,8 @@ function Register() {
             <span>JOIN OUR COMMUNITY</span>
             <h1>Create Account</h1>
             <p>
-              Create your account and discover beautiful furniture for
-              your home.
+              Create your account and discover beautiful furniture for your
+              home.
             </p>
           </div>
 
